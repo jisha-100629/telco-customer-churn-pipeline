@@ -17,3 +17,9 @@ An end-to-end machine learning system designed to predict telecom customer churn
 1. Install required dependencies:
    ```bash
    pip install pandas numpy scikit-learn joblib kagglehub
+
+## 🖥️ Live Production Demo
+
+Here is a look at the live prediction terminal layout:
+
+![Churn Pipeline Demo](demo.png)

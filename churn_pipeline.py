@@ -19,6 +19,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 # ==========================================
 # 1. DATA LOADING & CLEANING
 # ==========================================
+
 print("[Pipeline] Downloading data from Kaggle...")
 download_path = kagglehub.dataset_download("beatafaron/telco-customer-churn-realistic-customer-feedback")
 csv_file = [f for f in os.listdir(download_path) if f.endswith('.csv')][0]
@@ -56,9 +57,10 @@ X_train_raw, X_test_raw, y_train, y_test = train_test_split(
     df, df['churn'], test_size=0.2, random_state=42, stratify=df['churn']
 )
 
-# ==========================================
+# ===================================================
 # 2. FEATURE ENGINEERING (Fitted ONLY on Train Split)
-# ==========================================
+# ===================================================
+
 print("\n[NLP Pipeline] Vectorizing customer feedback text...")
 tfidf = TfidfVectorizer(max_features=30, stop_words='english')
 tfidf_train = tfidf.fit_transform(X_train_raw['customerfeedback']).toarray()
@@ -95,6 +97,7 @@ X_test_scaled_df = pd.DataFrame(X_test_scaled, columns=X_test_all.columns)
 # ==========================================
 # 3. MODEL BENCHMARKING
 # ==========================================
+
 print("\n[Model Benchmarking] Running Cross-Validation tests...")
 models = {
     'Logistic Regression': LogisticRegression(max_iter=1000, random_state=42),
@@ -116,6 +119,7 @@ print(f"\n[Optimization] Selected architecture for optimization: {best_model_nam
 # ==========================================
 # 4. HYPERPARAMETER OPTIMIZATION
 # ==========================================
+
 if best_model_name == 'Random Forest':
     param_grid = {'n_estimators': [50, 100], 'max_depth': [10, 20]}
 elif best_model_name == 'Decision Tree':
@@ -144,12 +148,14 @@ joblib.dump(tfidf, 'tfidf_vectorizer.pkl')
 # ==========================================
 # 5. MODEL METRICS REPORT
 # ==========================================
+
 print("\n--- Evaluation Metric Metrics Run Summary ---")
 print(classification_report(y_test, y_pred))
 
 # ==========================================
 # 6. INTERACTIVE PRODUCTION PREDICTOR
 # ==========================================
+
 print("\n--- Production Simulation Interface ---")
 while True:
     cmd = input("\nEnter to evaluate profile / 'exit' to terminate: ").strip().lower()

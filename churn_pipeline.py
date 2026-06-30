@@ -163,8 +163,8 @@ while True:
         break
     try:
         tenure = float(input("Customer Tenure (months): "))
-        monthly = float(input("Monthly Charge Amount ($): "))
-        total = float(input("Total Account Spending ($): "))
+        monthly = float(input("Monthly Charge Amount (₹): "))
+        total = float(input("Total Account Spending (₹): "))
         feedback = input("Raw text feedback entry: ")
 
         # Deploy Pipeline Framework sequentially

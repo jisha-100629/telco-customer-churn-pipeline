@@ -20,7 +20,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 # 1. DATA LOADING & CLEANING
 # ==========================================
 
-print("[Pipeline] Downloading data from Kaggle...")
+print("[Pipeline] Downloading data from Kaggle... ")
 download_path = kagglehub.dataset_download("beatafaron/telco-customer-churn-realistic-customer-feedback")
 csv_file = [f for f in os.listdir(download_path) if f.endswith('.csv')][0]
 df = pd.read_csv(os.path.join(download_path, csv_file))
